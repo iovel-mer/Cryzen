@@ -31,7 +31,7 @@ export default function SecurityPage() {
   return (
     <>
       <Header />
-      <main className='min-h-screen bg-slate-950 text-white relative overflow-hidden'>
+      <main className='container mx-auto pt-10 min-h-screen bg-slate-950 text-white relative overflow-hidden'>
         {/* Consistent Background Pattern */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-violet-900/30 via-transparent to-emerald-900/30"></div>
@@ -54,7 +54,7 @@ export default function SecurityPage() {
         <div className='relative z-10'>
           <section className='container mx-auto text-center pt-20 pb-16 px-4 md:px-6'>
             <div className='animate-fade-in-up'>
-              <div className='flex justify-start mb-8'>
+              <div className='flex justify-start mb-8 ml-8'>
                 <Link
                   href="/"
                   className='inline-flex items-center px-6 py-3 bg-slate-900/60 backdrop-blur-sm rounded-full border border-emerald-400/30 hover:bg-slate-800/60 hover:border-emerald-400/50 transition-all duration-300 group text-sm font-semibold text-white shadow-lg shadow-emerald-500/20'

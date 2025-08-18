@@ -36,7 +36,7 @@ export default function Footer() {
   return (
     <div className='relative'>
       {/* Footer */}
-      <footer className='py-12 px-6 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 relative text-white overflow-hidden'>
+      <footer className='container mx-auto py-12 px-6 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 relative text-white overflow-hidden'>
         {/* Modern Grid Background */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(139,69,244,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(139,69,244,0.05)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none" />
         
@@ -124,7 +124,6 @@ export default function Footer() {
                           )}
                         </span>
                         {/* Hover glow effect */}
-                        <div className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r ${section.color} w-0 group-hover:w-full transition-all duration-300 ${section.glow}`}></div>
                         {/* Side glow */}
                         <div className={`absolute inset-0 bg-gradient-to-r ${section.color} opacity-0 group-hover:opacity-10 blur-sm transition-opacity duration-300`}></div>
                       </Link>

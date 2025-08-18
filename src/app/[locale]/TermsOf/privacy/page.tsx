@@ -11,7 +11,7 @@ const PrivacyPage = () => {
   return (
     <>
       <Header />
-      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
+      <div className="container mx-auto min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
 
         {/* Background Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(139,92,246,0.05)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none"></div>
@@ -25,11 +25,7 @@ const PrivacyPage = () => {
         <div className="absolute top-60 right-60 w-2 h-2 bg-violet-400 rounded-full animate-bounce opacity-60" style={{ animationDelay: '0.5s' }}></div>
         <div className="absolute bottom-60 left-1/3 w-2.5 h-2.5 bg-teal-400 rounded-full animate-bounce opacity-60" style={{ animationDelay: '1s' }}></div>
 
-        <div className="relative z-10 px-6 py-16">
-          <div className="max-w-5xl mx-auto">
-
-            {/* Header Section */}
-            <div className="mb-12">
+            <div className="p-10">
               <Link
                 href="/"
                 className='inline-flex items-center px-6 py-3 bg-slate-900/60 backdrop-blur-xl rounded-2xl border border-emerald-400/30 hover:bg-slate-800/60 hover:border-emerald-400/50 transition-all duration-300 group text-sm font-semibold text-white shadow-lg shadow-emerald-500/20 mb-8'
@@ -38,6 +34,11 @@ const PrivacyPage = () => {
                 <span>{t('backToHome')}</span>
                 <ArrowRight className='h-5 w-5 ml-3 rotate-180 group-hover:scale-110 transition-transform duration-300 text-emerald-400' />
               </Link>
+            </div>
+        <div className="relative z-10 px-6 py-16">
+          <div className="max-w-5xl mx-auto">
+
+            
 
               <div className="text-center mb-8">
                 <h1 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-white via-emerald-200 to-violet-200 bg-clip-text text-transparent tracking-wide drop-shadow-lg">
@@ -50,7 +51,6 @@ const PrivacyPage = () => {
                   {t("lastUpdated")}
                 </div>
               </div>
-            </div>
 
             {/* Content Sections */}
             <div className="space-y-8">

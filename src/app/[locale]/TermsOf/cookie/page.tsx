@@ -11,7 +11,7 @@ export default function CookiePage() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
+      <main className="container mx-auto min-h-screen pt-15 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden">
 
         {/* Background Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.05)_2px,transparent_2px),linear-gradient(90deg,rgba(139,92,246,0.05)_2px,transparent_2px)] bg-[size:60px_60px]"></div>
@@ -25,11 +25,7 @@ export default function CookiePage() {
         <div className="absolute top-40 right-32 w-2 h-2 bg-violet-400 rounded-full animate-bounce opacity-60" style={{ animationDelay: '0.5s' }}></div>
         <div className="absolute bottom-32 left-1/3 w-2.5 h-2.5 bg-teal-400 rounded-full animate-bounce opacity-60" style={{ animationDelay: '1s' }}></div>
 
-        <div className="relative z-10 px-6 py-12">
-          <div className="max-w-6xl mx-auto">
-
-            {/* Header Section */}
-            <div className="text-center mb-16">
+            <div className="p-15">
               <Link
                 href="/"
                 className='inline-flex items-center px-6 py-3 bg-slate-900/60 backdrop-blur-sm rounded-full border border-emerald-400/30 hover:bg-slate-800/60 hover:border-emerald-400/50 transition-all duration-300 group text-sm font-semibold text-white shadow-lg shadow-emerald-500/20'
@@ -38,6 +34,11 @@ export default function CookiePage() {
                 {t('backToHome')}
                 <ArrowRight className='h-4 w-4 ml-2 rotate-180 group-hover:-translate-x-1 transition-transform duration-300 text-emerald-400' />
               </Link>
+            </div>
+        <div className="relative z-10 px-6 py-12">
+          <div className="max-w-6xl mx-auto">
+
+            
 
               <h1 className="text-6xl md:text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white via-emerald-200 to-violet-200 mt-8 animate-pulse tracking-wide drop-shadow-lg">
                 {t("title")}
@@ -46,7 +47,6 @@ export default function CookiePage() {
               <p className="text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
                 {t("description")}
               </p>
-            </div>
 
             {/* Cookie Content Layout */}
             <div className="grid lg:grid-cols-2 gap-12 mb-16">

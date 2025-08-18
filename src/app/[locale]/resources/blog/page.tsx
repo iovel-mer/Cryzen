@@ -33,7 +33,7 @@ export default function BlogPage() {
   return (
     <>
       <Header />
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 relative">
+    <div className="container mx-auto min-h-screen pt-10 bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 relative">
       {/* Background Grid */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.05)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none" />
       
@@ -45,17 +45,19 @@ export default function BlogPage() {
       <div className="absolute top-40 left-40 w-3 h-3 bg-emerald-500 rounded-full animate-bounce opacity-60"></div>
       <div className="absolute top-60 right-60 w-2 h-2 bg-violet-600 rounded-full animate-bounce opacity-60" style={{animationDelay: '0.5s'}}></div>
       <div className="absolute bottom-60 left-1/3 w-2.5 h-2.5 bg-emerald-500 rounded-full animate-bounce opacity-60" style={{animationDelay: '1s'}}></div>
+         <div className="p-20">
+           <Link
+                href="/"
+                className='inline-flex items-center px-6 py-3 mb-14 bg-slate-900/60 backdrop-blur-sm rounded-full border border-emerald-400/30 hover:bg-slate-950/60 hover:border-emerald-400/50 transition-all duration-300 group text-sm font-semibold text-white shadow-lg shadow-emerald-500/20'
+              >
+                <Home className='h-4 w-4 mr-2 text-emerald-500 group-hover:-translate-x-1 transition-transform duration-300' />
+                {t('backToHome')}
+                <ArrowRight className='h-4 w-4 ml-2 rotate-180 group-hover:-translate-x-1 transition-transform duration-300 text-emerald-500' />
+              </Link>
+         </div>
 
       <main className="container mx-auto px-4 py-8 md:py-12 lg:py-16">
         <div className="max-w-6xl mx-auto">
-         <Link 
-              href="/" 
-              className='inline-flex items-center px-6 py-3 mb-14 bg-slate-900/60 backdrop-blur-sm rounded-full border border-emerald-400/30 hover:bg-slate-950/60 hover:border-emerald-400/50 transition-all duration-300 group text-sm font-semibold text-white shadow-lg shadow-emerald-500/20'
-            >
-              <Home className='h-4 w-4 mr-2 text-emerald-500 group-hover:-translate-x-1 transition-transform duration-300' />
-              {t('backToHome')}
-              <ArrowRight className='h-4 w-4 ml-2 rotate-180 group-hover:-translate-x-1 transition-transform duration-300 text-emerald-500' />
-            </Link>
 
           {/* Hero Section */}
           <div className="text-center mb-12">

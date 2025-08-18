@@ -86,7 +86,7 @@ export function UserProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
-      const webTraderUrl = `https://webtrader.TechFlow.dev/trading-view?ctx=${token}`;
+      const webTraderUrl = `https://webtrader.salesvault.dev/trading-view?ctx=${token}`;
 
       let success = false;
 

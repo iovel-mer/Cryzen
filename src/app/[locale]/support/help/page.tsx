@@ -78,7 +78,7 @@ export default function HelpPage(){
   return (
     <>
       <Header />
-      <main className="bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 relative px-4 py-16 sm:px-6 lg:px-8 mx-auto min-h-screen overflow-hidden text-white">
+      <main className="container mx-auto pt-30 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 relative px-4 py-16 sm:px-6 lg:px-8  min-h-screen overflow-hidden text-white">
         {/* Background Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(139,69,244,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(139,69,244,0.05)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none" />
         

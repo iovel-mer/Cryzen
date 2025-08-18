@@ -12,7 +12,7 @@ export default function TermsOfService() {
   return (
     <>
       <Header />
-      <main className="min-h-screen bg-slate-950 relative text-white px-6 py-20 flex items-center justify-center">
+      <main className="container mx-auto min-h-screen bg-slate-950 relative text-white px-6 py-20 ">
         {/* Background Grid and Particles */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-violet-900/30 via-transparent to-emerald-900/30"></div>
@@ -25,10 +25,7 @@ export default function TermsOfService() {
           <div className="absolute bottom-40 left-1/4 w-3 h-3 bg-teal-400 rounded-full animate-pulse opacity-50"></div>
           <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-emerald-300 rounded-full animate-bounce opacity-40"></div>
         </div>
-
-        <div className="relative z-10 max-w-5xl w-full bg-slate-900/60 backdrop-blur-xl border border-emerald-400/30 rounded-3xl shadow-xl shadow-emerald-500/10 p-8 sm:p-12">
-          {/* Navigation Link */}
-          <div className="mb-8">
+          <div className="p-10 mb-10">
             <Link
               href="/"
               className="inline-flex items-center px-6 py-3 bg-slate-900/60 backdrop-blur-sm rounded-full border border-emerald-400/30 hover:bg-slate-800/60 hover:border-emerald-400/50 transition-all duration-300 group text-sm font-semibold text-white shadow-lg shadow-emerald-500/20"
@@ -38,6 +35,9 @@ export default function TermsOfService() {
               <ArrowRight className="h-4 w-4 ml-2 rotate-180 group-hover:-translate-x-1 transition-transform duration-300 text-emerald-400" />
             </Link>
           </div>
+
+        <div className="relative z-10 max-w-5xl mx-auto w-full bg-slate-900/60 backdrop-blur-xl border border-emerald-400/30 rounded-3xl shadow-xl shadow-emerald-500/10 p-8 sm:p-12">
+          {/* Navigation Link */}
 
           {/* Title */}
           <h1 className="text-5xl font-black mb-10 bg-clip-text text-transparent bg-gradient-to-r from-white via-emerald-200 to-violet-200 tracking-wide drop-shadow-lg">

@@ -32,7 +32,7 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSuccessMessage("✨ Your message has been sent successfully!");
+   
     setTimeout(() => {
       router.push("/");
     }, 2000);
@@ -68,11 +68,9 @@ export default function ContactPage() {
   return (
     <>
       <Header />
-      <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 relative overflow-hidden">
+      <div className="container mx-auto min-h-screen py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 relative overflow-hidden">
        
-        <div className="max-w-5xl mx-auto relative z-10">
-          {/* Back to Home Link */}
-          <div className='flex justify-start mb-12'>
+          <div className='pl-10 mb-20'>
              <Link
                   href="/"
                   className='inline-flex items-center px-6 py-3 bg-gray-900/60 backdrop-blur-sm rounded-full border border-green-700/30 hover:bg-gray-800/60 hover:border-green-700/50 transition-all duration-300 group text-sm font-semibold text-white shadow-lg shadow-purple-500/20'
@@ -82,6 +80,8 @@ export default function ContactPage() {
                   <ArrowRight className='h-4 w-4 ml-2 rotate-180 group-hover:-translate-x-1 transition-transform duration-300 text-green-700' />
                 </Link>
           </div>
+        <div className="max-w-5xl mx-auto relative z-10">
+          {/* Back to Home Link */}
 
           {/* Hero Section */}
           <div className="text-center mb-20">
@@ -197,16 +197,12 @@ export default function ContactPage() {
                   </div>
                   <Button
                     type="submit"
-                    className="w-full text-lg font-bold bg-green-700 text-white transition-all duration-300 shadow-lg  rounded-xl h-14 tracking-wide"
+                    className="w-full text-lg font-bold bg-black text-white transition-all duration-300 shadow-lg  rounded-xl h-14 tracking-wide"
                   >
                     {t("form.button")}
                   </Button>
 
-                  {successMessage && (
-                    <div className="text-emerald-400 text-base text-center mt-6 p-4 bg-emerald-500/10 rounded-xl border border-emerald-500/20 backdrop-blur-sm">
-                      {successMessage}
-                    </div>
-                  )}
+                 
                 </form>
               </CardContent>
             </Card>

@@ -96,7 +96,7 @@ export const Market: React.FC = () => {
   }
 
   return (
-    <section className="py-20 bg-slate-950 min-h-screen relative overflow-hidden">
+    <section className="container mx-auto py-20 bg-slate-950 min-h-screen relative overflow-hidden">
       {/* Consistent Background Pattern */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-r from-violet-900/30 via-transparent to-emerald-900/30"></div>
