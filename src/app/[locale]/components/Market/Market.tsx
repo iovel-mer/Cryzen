@@ -71,7 +71,7 @@ export const Market: React.FC = () => {
     if (hasError) {
       return (
         <div
-          className="flex items-center justify-center bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 text-white font-black shadow-2xl rounded-full"
+          className="flex items-center justify-center bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 text-white font-black shadow-2xl rounded-full flex-shrink-0"
           style={{ width: size, height: size }}
         >
           <span className="text-xs font-mono">{coin.symbol?.slice(0, 2) || "??"}</span>
@@ -81,7 +81,7 @@ export const Market: React.FC = () => {
 
     return (
       <div 
-        className="relative overflow-hidden shadow-2xl rounded-full"
+        className="relative overflow-hidden shadow-2xl rounded-full flex-shrink-0"
         style={{ width: size, height: size }}
       >
         {/* White background specifically for Ethereum */}
@@ -152,39 +152,40 @@ export const Market: React.FC = () => {
             <p className="text-red-300 text-sm sm:text-lg font-mono uppercase tracking-wide">{error}</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          <div className="grid gap-3 sm:gap-4 lg:gap-6 xl:gap-8 grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-rows-fr">
             {marketData.map((coin, index) => (
               <div
                 key={coin.symbol}
-                className="group relative w-full bg-white/5 hover:border-cyan-400/70 transition-all duration-500 hover:scale-[1.03] sm:hover:scale-105 overflow-hidden p-4 sm:p-6 shadow-2xl hover:shadow-cyan-500/30"
+                className="group relative w-full max-w-[160px] sm:max-w-none bg-white/5 hover:border-cyan-400/70 transition-all duration-500 hover:scale-[1.02] sm:hover:scale-105 overflow-hidden p-2 sm:p-4 lg:p-6 shadow-2xl hover:shadow-cyan-500/30 mx-auto"
                 style={{
-                  clipPath: "polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%, 0% 15%)",
+                  clipPath: "polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%)",
                   animationDelay: `${index * 0.1}s`,
-                  minHeight: '280px', // Fixed minimum height for consistency
+                  minHeight: '140px', // Even more compact for mobile
                 }}
               >
                 <div className="relative z-10">
-                  <div className="flex flex-wrap items-start justify-between mb-4 sm:mb-6 gap-3">
-                    <div className="flex items-center space-x-3 sm:space-x-4">
-                      <CryptoLogo coin={coin} size={48} />
-                      <div>
-                        <h4 className="font-black text-sm sm:text-lg text-cyan-100 uppercase tracking-wide font-mono">{coin.name}</h4>
-                        <p className="text-cyan-400/80 text-xs sm:text-sm font-mono uppercase">{coin.symbol}</p>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2 sm:mb-4 lg:mb-6">
+                    <div className="flex items-center space-x-1 sm:space-x-3 min-w-0 flex-1 mb-1 sm:mb-0">
+                      <CryptoLogo coin={coin} size={28} /> {/* Even smaller logo on mobile */}
+                      <div className="min-w-0 flex-1">
+                        <h4 className="font-black text-[10px] sm:text-sm lg:text-lg text-cyan-100 uppercase tracking-wide font-mono truncate leading-tight">{coin.name}</h4>
+                        <p className="text-cyan-400/80 text-[8px] sm:text-xs lg:text-sm font-mono uppercase">{coin.symbol}</p>
                       </div>
                     </div>
-                    <div className={`flex items-center gap-1 text-xs sm:text-sm font-mono ${coin.change >= 0 ? "text-green-300" : "text-red-300"}`}>
-                      {coin.change >= 0 ? <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" /> : <TrendingDown className="w-3 h-3 sm:w-4 sm:h-4" />}
-                      {formatChange(coin.change)}
+                    <div className={`flex items-center justify-center gap-1 text-[9px] sm:text-xs lg:text-sm font-mono whitespace-nowrap ${coin.change >= 0 ? "text-green-300" : "text-red-300"}`}>
+                      {coin.change >= 0 ? <TrendingUp className="w-2 h-2 sm:w-4 sm:h-4" /> : <TrendingDown className="w-2 h-2 sm:w-4 sm:h-4" />}
+                      <span className="text-[9px] sm:text-xs lg:text-sm">{formatChange(coin.change)}</span>
                     </div>
                   </div>
 
-                  <div className="mb-4 sm:mb-6">
-                    <p className="text-xl sm:text-3xl md:text-4xl font-black text-white mb-1 sm:mb-2 tracking-tight font-mono">
+                  <div className="mb-1 sm:mb-3 lg:mb-6">
+                    <p className="text-sm sm:text-xl lg:text-3xl xl:text-4xl font-black text-white mb-1 tracking-tight font-mono leading-tight">
                       {formatPrice(coin.price)}
                     </p>
-                    <p className="text-cyan-300 text-xs sm:text-sm font-mono uppercase flex items-center gap-1 sm:gap-2">
-                      <BarChart3 className="w-3 h-3 sm:w-4 sm:h-4" />
-                      {t("currentPrice")}
+                    <p className="text-cyan-300 text-[8px] sm:text-xs lg:text-sm font-mono uppercase flex items-center gap-1">
+                      <BarChart3 className="w-2 h-2 sm:w-4 sm:h-4" />
+                      <span className="text-[8px] sm:text-xs lg:text-sm hidden sm:inline">{t("currentPrice")}</span>
+                      <span className="text-[8px] sm:hidden">Price</span>
                     </p>
                   </div>
                 </div>
