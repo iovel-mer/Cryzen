@@ -181,7 +181,7 @@ export default function RegisterPage() {
       <div className="flex-1 flex items-center justify-center p-4 sm:p-8 overflow-y-auto relative z-10">
         <Card className="w-full max-w-md bg-gradient-to-br from-gray-800/60 to-slate-900/60 backdrop-blur-xl  text-white shadow-xl shadow-purple-500/10 rounded-2xl">
           <CardHeader className="pb-4">
-            <Link href={`/${locale}`} className="inline-flex items-center text-white mb-4 transition-colors">
+            <Link href={`/${locale}`} className="inline-flex items-center max-w-[130px] text-white mb-4 transition-colors">
               <ArrowLeft className="w-4 h-4 mr-2" /> {t("back")}
             </Link>
             <CardTitle className="text-3xl font-black text-white text-center tracking-wide">{t("createAccount")}</CardTitle>

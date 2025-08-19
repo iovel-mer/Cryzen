@@ -182,7 +182,7 @@
     "message": "Message Content",
     "placeholder": "Pick a topic",
     "placeholderMessage": "Describe your issue or interest in crypto...",
-    "button": "Contact Blockchain Team",
+    "button": "Send Message",
     "options": {
       "general": "Token Information",
       "technical": "Smart Contract Error",
@@ -227,7 +227,7 @@
 }
 ,
 "docs": {
-    "backToHome": "Go Back Home",
+    "backToHome": "Back to Home",
     "title": "Understanding Crypto Assets",
     "whatIs": {
       "title": "Crypto Asset Overview",

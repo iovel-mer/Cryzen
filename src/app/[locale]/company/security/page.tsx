@@ -31,7 +31,7 @@ export default function SecurityPage() {
   return (
     <>
       <Header />
-      <main className='container mx-auto pt-10 min-h-screen bg-slate-950 text-white relative overflow-hidden'>
+      <main className=' mx-auto pt-10 min-h-screen bg-slate-950 text-white relative overflow-hidden'>
         {/* Consistent Background Pattern */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-violet-900/30 via-transparent to-emerald-900/30"></div>
@@ -52,16 +52,16 @@ export default function SecurityPage() {
         <div className="absolute bottom-32 left-1/3 w-2.5 h-2.5 bg-teal-400 rounded-full animate-bounce opacity-60" style={{animationDelay: '1s'}}></div>
 
         <div className='relative z-10'>
-          <section className='container mx-auto text-center pt-20 pb-16 px-4 md:px-6'>
+          <section className=' mx-auto text-center pt-20 pb-16 px-4 md:px-6'>
             <div className='animate-fade-in-up'>
               <div className='flex justify-start mb-8 ml-8'>
                 <Link
                   href="/"
                   className='inline-flex items-center px-6 py-3 bg-slate-900/60 backdrop-blur-sm rounded-full border border-emerald-400/30 hover:bg-slate-800/60 hover:border-emerald-400/50 transition-all duration-300 group text-sm font-semibold text-white shadow-lg shadow-emerald-500/20'
                 >
-                  <Home className='h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform duration-300 text-emerald-400' />
+                  <Home className='h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform duration-300 text-emerald-300' />
                   {t('backToHome')}
-                  <ArrowRight className='h-4 w-4 ml-2 rotate-180 group-hover:-translate-x-1 transition-transform duration-300 text-emerald-400' />
+                  <ArrowRight className='h-4 w-4 ml-2 rotate-180 group-hover:-translate-x-1 transition-transform duration-300 text-emerald-300' />
                 </Link>
               </div>
 

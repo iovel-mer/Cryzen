@@ -210,7 +210,7 @@
     "message": "Tu Mensaje",
     "placeholder": "Selecciona un tema",
     "placeholderMessage": "Escribe tu duda o sugerencia sobre criptomonedas...",
-    "button": "Enviar Mensaje Cripto",
+    "button": "Enviar Mensaje",
     "options": {
       "general": "Consulta General",
       "technical": "Problemas Técnicos",

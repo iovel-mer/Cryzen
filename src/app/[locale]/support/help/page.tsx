@@ -78,7 +78,7 @@ export default function HelpPage(){
   return (
     <>
       <Header />
-      <main className="container mx-auto pt-30 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 relative px-4 py-16 sm:px-6 lg:px-8  min-h-screen overflow-hidden text-white">
+      <main className=" mx-auto pt-30 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 relative px-4 py-16 sm:px-6 lg:px-8  min-h-screen overflow-hidden text-white">
         {/* Background Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(139,69,244,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(139,69,244,0.05)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none" />
         
@@ -93,21 +93,21 @@ export default function HelpPage(){
         <div className="absolute top-40 right-32 w-2 h-2 bg-indigo-400 rounded-full animate-bounce opacity-60" style={{animationDelay: '0.5s'}}></div>
         <div className="absolute bottom-32 left-1/3 w-2.5 h-2.5 bg-cyan-400 rounded-full animate-bounce opacity-60" style={{animationDelay: '1s'}}></div>
 
-        {/* Page Content */}
-        <div className="relative z-10 max-w-7xl mx-auto">
-          {/* Hero Section */}
-          <section className="text-center mb-24">
-            {/* Back to Home Link */}
             <div className='flex justify-start mb-12'>
               <Link
                   href="/"
                   className='inline-flex items-center px-6 py-3  rounded-full border  transition-all duration-300 group text-sm font-semibold text-white shadow-lg shadow-purple-500/20'
                 >
-                  <Home className='h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform duration-300 text-green-700' />
+                  <Home className='h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform duration-300 text-green-300' />
                   {t('backToHome')}
-                  <ArrowRight className='h-4 w-4 ml-2 rotate-180 group-hover:-translate-x-1 transition-transform duration-300 text-green-700' />
+                  <ArrowRight className='h-4 w-4 ml-2 rotate-180 group-hover:-translate-x-1 transition-transform duration-300 text-green-300' />
                 </Link>
             </div>
+       
+        <div className="relative z-10 max-w-7xl mx-auto">
+         
+          <section className="text-center mb-24">
+            {/* Back to Home Link */}
 
             {/* Hero Badge */}
             <div className="inline-flex items-center px-6 py-3 bg-gray-900/50 backdrop-blur-md rounded-full border border-green-700/40 mb-8 shadow-lg shadow-purple-500/20">

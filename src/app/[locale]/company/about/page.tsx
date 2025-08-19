@@ -11,7 +11,7 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <section className="container mx-auto min-h-screen relative bg-slate-950 pt-0 overflow-hidden">
+      <section className=" mx-auto min-h-screen relative bg-slate-950 pt-0 overflow-hidden">
         {/* Consistent Background Pattern */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-gradient-to-r from-violet-900/30 via-transparent to-emerald-900/30"></div>
@@ -29,15 +29,15 @@ export default function AboutPage() {
         <div className="absolute bottom-32 left-1/3 w-2.5 h-2.5 bg-teal-400 rounded-full animate-bounce opacity-60" style={{animationDelay: '1s'}}></div>
 
         {/* HERO SECTION */}
-          <div className="p-20">
+          <div className="p-10 mb-10">
              <Link
-                  href="/"
-                  className='inline-flex items-center px-6 py-3 bg-slate-900/60 backdrop-blur-sm rounded-full border border-emerald-400/30 hover:bg-slate-800/60 hover:border-emerald-400/50 transition-all duration-300 group text-sm font-semibold text-white shadow-lg shadow-emerald-500/20'
-                >
-                  <Home className='h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform duration-300 text-emerald-400' />
-                  {t('backToHome')}
-                  <ArrowRight className='h-4 w-4 ml-2 rotate-180 group-hover:-translate-x-1 transition-transform duration-300 text-emerald-400' />
-                </Link>
+              href="/"
+              className="inline-flex items-center px-6 py-3 bg-slate-900/60 backdrop-blur-sm rounded-full border border-emerald-400/30 hover:bg-slate-800/60 hover:border-emerald-400/50 transition-all duration-300 group text-sm font-semibold text-white shadow-lg shadow-emerald-500/20"
+            >
+              <Home className="h-4 w-4 mr-2 group-hover:-translate-x-1 transition-transform duration-300 text-emerald-400" />
+              {t("backToHome")}
+              <ArrowRight className="h-4 w-4 ml-2 rotate-180 group-hover:-translate-x-1 transition-transform duration-300 text-emerald-400" />
+            </Link>
           </div>
         <section className="py-10 md:py-10 text-center px-6 md:px-12 max-w-3xl mx-auto relative z-10">
 

@@ -64,7 +64,7 @@ export const Trading: React.FC = () => {
   ]
 
   return (
-    <section className="container mx-auto relative py-16 px-4  overflow-hidden min-h-screen bg-slate-950">
+    <section className=" mx-auto relative py-16 px-4  overflow-hidden min-h-screen bg-slate-950">
       {/* Consistent Background Pattern */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-r from-violet-900/30 via-transparent to-emerald-900/30"></div>

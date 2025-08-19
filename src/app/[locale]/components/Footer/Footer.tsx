@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { Separator } from '@/components/ui/separator';
-import { Cpu, Bitcoin, Rocket, Zap } from 'lucide-react';
+import { Cpu, Bitcoin, Rocket, Zap, Sparkles } from 'lucide-react';
 
 export default function Footer() {
   const tFooter = useTranslations('footer');
@@ -36,7 +36,7 @@ export default function Footer() {
   return (
     <div className='relative'>
       {/* Footer */}
-      <footer className='container mx-auto py-12 px-6 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 relative text-white overflow-hidden'>
+      <footer className=' mx-auto py-12 px-6 bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 relative text-white overflow-hidden'>
         {/* Modern Grid Background */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(139,69,244,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(139,69,244,0.05)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none" />
         
@@ -61,7 +61,10 @@ export default function Footer() {
                   <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-indigo-500 blur opacity-40 transition duration-300 group-hover:opacity-60 rounded-xl" />
                 </div>
                  <div className='flex gap-4 items-center'>
-                   <Bitcoin size={24} className="text-white" />
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-violet-600 flex items-center justify-center shadow-2xl shadow-emerald-500/30 hover:shadow-emerald-500/50 transition-all duration-300 group-hover:scale-110 border border-emerald-400/40">
+                                     <Sparkles size={24} className="text-white" />
+                                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                   </div>
                    <span className='text-3xl font-black tracking-wide bg-gradient-to-r from-purple-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-lg'>
                     Cryzen
                    </span>

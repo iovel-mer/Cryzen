@@ -24,9 +24,8 @@ export const Market: React.FC = () => {
       } else {
         setError(result.error || t("errorGeneric"))
       }
-    } catch (err) {
+    } catch {
       setError(t("errorFetch"))
-      console.error("Market data fetch error:", err)
     } finally {
       setLoading(false)
     }
@@ -66,28 +65,41 @@ export const Market: React.FC = () => {
     const hasError = imageErrors.has(coin.symbol)
     const logoSrc = `/assets/images/${coin.symbol.toLowerCase()}.png`
 
+    // Check if this is Ethereum and needs white color
+    const isEthereum = coin.symbol.toUpperCase() === 'ETH'
+
     if (hasError) {
       return (
         <div
-          className="flex items-center justify-center bg-gradient-to-br from-emerald-500 via-violet-500 to-teal-500 text-white font-bold shadow-2xl border-2 border-emerald-400/50 rounded-xl"
+          className="flex items-center justify-center bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 text-white font-black shadow-2xl rounded-full"
           style={{ width: size, height: size }}
         >
-          <span className="text-xs font-semibold">{coin.symbol?.slice(0, 2) || "??"}</span>
+          <span className="text-xs font-mono">{coin.symbol?.slice(0, 2) || "??"}</span>
         </div>
       )
     }
 
     return (
       <div 
-        className="relative overflow-hidden shadow-2xl rounded-xl border border-emerald-400/30"
+        className="relative overflow-hidden shadow-2xl rounded-full"
         style={{ width: size, height: size }}
       >
+        {/* White background specifically for Ethereum */}
+        {isEthereum && (
+          <div 
+            className="absolute inset-0 bg-white rounded-full"
+            style={{ zIndex: 1 }}
+          />
+        )}
+
         <Image
           src={logoSrc}
           width={size}
           height={size}
           alt={`${coin.name || coin.symbol} logo`}
-          className="object-cover h-full rounded-xl"
+          className={`object-cover h-full rounded-full ${
+            isEthereum ? 'relative z-10' : ''
+          }`}
           onError={() => handleImageError(coin.symbol)}
           unoptimized
         />
@@ -96,127 +108,94 @@ export const Market: React.FC = () => {
   }
 
   return (
-    <section className="container mx-auto py-20 bg-slate-950 min-h-screen relative overflow-hidden">
-      {/* Consistent Background Pattern */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-violet-900/30 via-transparent to-emerald-900/30"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_1200px_800px_at_50%_-30%,rgba(16,185,129,0.15),transparent)]"></div>
-        <div className="absolute inset-0 bg-[linear-gradient(45deg,rgba(139,69,19,0.04)_1px,transparent_1px),linear-gradient(-45deg,rgba(16,185,129,0.04)_1px,transparent_1px)] bg-[size:30px_30px] animate-pulse"></div>
-      </div>
+    <section className="py-14 sm:py-20 border-b-2  mx-auto border-gray-200 bg-gradient-to-br from-black via-gray-900 to-purple-900 min-h-screen relative overflow-hidden">
+      {/* Cyberpunk Grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px] sm:bg-[size:50px_50px]" />
 
-      <div className="absolute top-1/4 left-1/6 w-80 h-80 bg-gradient-conic from-emerald-500 via-violet-500 to-teal-500 rounded-full blur-3xl opacity-15 animate-spin" style={{animationDuration: '20s'}}></div>
-      <div className="absolute bottom-1/4 right-1/6 w-96 h-96 bg-gradient-conic from-teal-500 via-emerald-500 to-violet-500 rounded-full blur-3xl opacity-15 animate-spin" style={{animationDuration: '25s', animationDirection: 'reverse'}}></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/5 to-transparent h-2 animate-pulse"></div>
+      {/* Neon Orbs */}
+      <div className="absolute top-1/4 left-1/6 w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 bg-gradient-conic from-cyan-400 via-purple-500 to-pink-500 rounded-full blur-3xl opacity-30 animate-spin" style={{ animationDuration: "20s" }} />
+      <div className="absolute bottom-1/4 right-1/6 w-40 sm:w-64 md:w-80 h-40 sm:h-64 md:h-80 bg-gradient-conic from-green-400 via-blue-500 to-cyan-500 rounded-full blur-3xl opacity-25 animate-spin" style={{ animationDuration: "25s", animationDirection: "reverse" }} />
 
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-emerald-500/15 to-violet-500/15 backdrop-blur-xl border border-emerald-400/30 rounded-full text-sm font-semibold text-emerald-200 shadow-lg shadow-emerald-500/20 mb-8">
-            <Activity className="w-5 h-5 text-emerald-400 animate-pulse" />
+      <div className="container mx-auto px-3 sm:px-6 max-w-7xl relative z-10">
+        {/* Header */}
+        <div className="text-center mb-10 sm:mb-16">
+          <div
+            className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-8 py-2 sm:py-4 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 backdrop-blur-lg border-2 border-cyan-400/40 text-[10px] sm:text-sm font-mono uppercase tracking-widest text-cyan-300 mb-5 sm:mb-6"
+            style={{ clipPath: "polygon(10% 0%, 90% 0%, 100% 25%, 100% 75%, 90% 100%, 10% 100%, 0% 75%, 0% 25%)" }}
+          >
+            <Activity className="w-3 h-3 sm:w-5 sm:h-5 text-cyan-400 animate-pulse" />
             <span>{t("badge")}</span>
           </div>
 
-          <h3 className="text-5xl text-white md:text-6xl lg:text-7xl font-black mb-8 tracking-tight">
+          <h3 className="text-2xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-black mb-4 sm:mb-6 uppercase tracking-tight font-mono">
             {t("title")}
           </h3>
 
-          <p className="text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-lg text-cyan-100 max-w-2xl sm:max-w-3xl mx-auto font-mono leading-relaxed">
             {t("description")}
           </p>
         </div>
 
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-32">
+          <div className="flex flex-col items-center justify-center py-20 sm:py-32">
             <div className="relative">
-              <div className="w-24 h-24 border-4 border-emerald-500 border-t-transparent animate-spin rounded-2xl shadow-lg shadow-emerald-500/30"></div>
-              <RefreshCw className="w-8 h-8 text-emerald-400 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-pulse" />
+              <div
+                className="w-14 sm:w-20 md:w-24 h-14 sm:h-20 md:h-24 border-4 border-cyan-500 border-t-transparent animate-spin"
+                style={{ clipPath: "polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)" }}
+              />
+              <RefreshCw className="w-5 sm:w-7 md:w-8 h-5 sm:h-7 md:h-8 text-cyan-400 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse" />
             </div>
-            <p className="mt-8 text-emerald-200 text-xl font-semibold tracking-wide">{t("loading")}</p>
+            <p className="mt-5 text-cyan-200 text-sm sm:text-lg font-mono uppercase tracking-wider">{t("loading")}</p>
           </div>
         ) : error ? (
-          <div className="text-center py-32">
-            <div className="bg-gradient-to-br from-red-900/50 to-slate-900/50 backdrop-blur-xl border border-red-500/50 p-12 max-w-lg mx-auto shadow-2xl shadow-red-500/20 rounded-2xl">
-              <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-600 flex items-center justify-center mx-auto mb-6 shadow-lg shadow-red-500/30 rounded-2xl">
-                <TrendingDown className="w-8 h-8 text-white" />
-              </div>
-              <p className="text-red-300 text-lg font-semibold tracking-wide">{error}</p>
-            </div>
+          <div className="text-center py-20 sm:py-32">
+            <p className="text-red-300 text-sm sm:text-lg font-mono uppercase tracking-wide">{error}</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {marketData.map((coin, index) => (
               <div
                 key={coin.symbol}
-                className="group relative bg-slate-800/60 hover:bg-slate-800/80 border border-emerald-400/20 hover:border-violet-400/50 rounded-2xl transition-all duration-500 hover:scale-105 overflow-hidden p-6 shadow-xl hover:shadow-emerald-500/20"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="group relative w-full bg-white/5 hover:border-cyan-400/70 transition-all duration-500 hover:scale-[1.03] sm:hover:scale-105 overflow-hidden p-4 sm:p-6 shadow-2xl hover:shadow-cyan-500/30"
+                style={{
+                  clipPath: "polygon(15% 0%, 85% 0%, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0% 85%, 0% 15%)",
+                  animationDelay: `${index * 0.1}s`,
+                  minHeight: '280px', // Fixed minimum height for consistency
+                }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-violet-500/5 to-teal-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
-
-                <div className="absolute top-4 left-4 right-4 h-px bg-gradient-to-r from-transparent via-emerald-400/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="absolute bottom-4 left-4 right-4 h-px bg-gradient-to-r from-transparent via-violet-400/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
                 <div className="relative z-10">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="flex items-center space-x-4">
-                      <CryptoLogo coin={coin} size={56} />
+                  <div className="flex flex-wrap items-start justify-between mb-4 sm:mb-6 gap-3">
+                    <div className="flex items-center space-x-3 sm:space-x-4">
+                      <CryptoLogo coin={coin} size={48} />
                       <div>
-                        <h4 className="font-bold text-lg text-gray-100 tracking-wide">{coin.name}</h4>
-                        <p className="text-emerald-400/80 text-sm font-medium tracking-wide">{coin.symbol}</p>
+                        <h4 className="font-black text-sm sm:text-lg text-cyan-100 uppercase tracking-wide font-mono">{coin.name}</h4>
+                        <p className="text-cyan-400/80 text-xs sm:text-sm font-mono uppercase">{coin.symbol}</p>
                       </div>
                     </div>
-
-                    {/* Updated Percent Text - Clean and Right Aligned */}
-                    <div className="text-right">
-                      <span className={`flex items-center justify-end gap-1 text-xs font-semibold ${
-                        coin.change >= 0 ? "text-emerald-300" : "text-red-300"
-                      }`}>
-                        {coin.change >= 0 ? <TrendingUp className="w-4 h-4" /> : <TrendingDown className="w-4 h-4" />}
-                        {formatChange(coin.change)}
-                      </span>
+                    <div className={`flex items-center gap-1 text-xs sm:text-sm font-mono ${coin.change >= 0 ? "text-green-300" : "text-red-300"}`}>
+                      {coin.change >= 0 ? <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" /> : <TrendingDown className="w-3 h-3 sm:w-4 sm:h-4" />}
+                      {formatChange(coin.change)}
                     </div>
                   </div>
 
-                  <div className="mb-6">
-                    <p className="text-4xl font-black text-white mb-2 tracking-tight drop-shadow-sm">
+                  <div className="mb-4 sm:mb-6">
+                    <p className="text-xl sm:text-3xl md:text-4xl font-black text-white mb-1 sm:mb-2 tracking-tight font-mono">
                       {formatPrice(coin.price)}
                     </p>
-                    <p className="text-gray-400 text-sm font-medium tracking-wide flex items-center gap-2">
-                      <BarChart3 className="w-4 h-4" />
+                    <p className="text-cyan-300 text-xs sm:text-sm font-mono uppercase flex items-center gap-1 sm:gap-2">
+                      <BarChart3 className="w-3 h-3 sm:w-4 sm:h-4" />
                       {t("currentPrice")}
                     </p>
                   </div>
-
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center">
-                      <span className="text-gray-300 text-sm font-medium tracking-wide">{t("movement")}</span>
-                      <span className={`font-bold text-lg ${coin.change >= 0 ? "text-emerald-400" : "text-red-400"}`}>
-                        {Math.abs(coin.change).toFixed(2)}%
-                      </span>
-                    </div>
-
-                    <div className="w-full bg-slate-700/50 h-2 rounded-full relative overflow-hidden">
-                      <div 
-                        className={`h-2 rounded-full transition-all duration-1000 ${
-                          coin.change >= 0 
-                            ? 'bg-emerald-400 shadow-lg shadow-emerald-400/30' 
-                            : 'bg-gradient-to-r from-red-400 to-rose-500 shadow-lg shadow-red-400/30'
-                        }`}
-                        style={{ width: `${Math.min(Math.abs(coin.change) * 10, 100)}%` }}
-                      ></div>
-                    </div>
-                  </div>
                 </div>
-
-                <div className="absolute top-3 left-3 w-6 h-6 border-l-2 border-t-2 border-emerald-400/40 opacity-40 group-hover:opacity-80 transition-opacity rounded-tl-lg"></div>
-                <div className="absolute top-3 right-3 w-6 h-6 border-r-2 border-t-2 border-violet-400/40 opacity-40 group-hover:opacity-80 transition-opacity rounded-tr-lg"></div>
-                <div className="absolute bottom-3 left-3 w-6 h-6 border-l-2 border-b-2 border-teal-400/40 opacity-40 group-hover:opacity-80 transition-opacity rounded-bl-lg"></div>
-                <div className="absolute bottom-3 right-3 w-6 h-6 border-r-2 border-b-2 border-emerald-400/40 opacity-40 group-hover:opacity-80 transition-opacity rounded-br-lg"></div>
               </div>
             ))}
           </div>
         )}
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 via-violet-500 to-teal-500 opacity-60 shadow-lg shadow-emerald-500/30"></div>
+      {/* Bottom Accent */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500" />
     </section>
   )
 }

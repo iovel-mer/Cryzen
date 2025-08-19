@@ -66,7 +66,7 @@ export const Hero: React.FC = () => {
   }
 
   return (
-    <section className="container mx-auto w-full min-h-screen bg-slate-950 relative text-white overflow-hidden">
+    <section className=" mx-auto w-full min-h-screen bg-slate-950 relative text-white overflow-hidden">
       {/* Enhanced Animated Background */}
       <div className="absolute inset-0">
         {/* Multi-layer gradients */}
