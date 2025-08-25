@@ -37,22 +37,22 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useToast } from '@/hooks/use-toast';
 import {
-  Bitcoin,
-  ShieldCheck,
+  AlertCircle,
+  CheckCircle,
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
-  Timer,
-  Coins,
-  ScrollText,
+  Clock,
+  DollarSign,
+  History,
   Loader2,
   Plus,
-  ArrowDownCircle,
-  ArrowUpCircle,
-  UserCheck,
-  Banknote,
-  CheckCircle2,
+  TrendingDown,
+  TrendingUp,
+  UserPlus,
+  Wallet,
+  XCircle,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import type React from 'react';
@@ -272,17 +272,17 @@ export default function TradingPage() {
   const getStatusIcon = (status: TicketStatus) => {
     switch (status) {
       case 2: // Completed
-        return <CheckCircle2 className='h-4 w-4 text-emerald-400' />;
+        return <CheckCircle className='h-4 w-4 text-green-600' />;
       case 0: // Pending
-        return <Timer className='h-4 w-4 text-amber-400' />;
+        return <Clock className='h-4 w-4 text-yellow-600' />;
       case 1: // Processing
-        return <ShieldCheck className='h-4 w-4 text-cyan-400' />;
+        return <AlertCircle className='h-4 w-4 text-blue-600' />;
       case 3: // Cancelled
       case 4: // Failed
       case 5: // Rejected
-        return <CheckCircle2 className='h-4 w-4 text-red-400' />;
+        return <XCircle className='h-4 w-4 text-red-600' />;
       default:
-        return <Timer className='h-4 w-4 text-slate-400' />;
+        return <Clock className='h-4 w-4 text-gray-600' />;
     }
   };
 
@@ -301,17 +301,17 @@ export default function TradingPage() {
   const getStatusColor = (status: TicketStatus) => {
     switch (status) {
       case 2: // Completed
-        return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
+        return 'bg-green-100 text-green-800';
       case 0: // Pending
-        return 'bg-amber-500/20 text-amber-400 border-amber-500/30';
+        return 'bg-yellow-100 text-yellow-800';
       case 1: // Processing
-        return 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30';
+        return 'bg-blue-100 text-blue-800';
       case 3: // Cancelled
       case 4: // Failed
       case 5: // Rejected
-        return 'bg-red-500/20 text-red-400 border-red-500/30';
+        return 'bg-red-100 text-red-800';
       default:
-        return 'bg-slate-500/20 text-slate-400 border-slate-500/30';
+        return 'bg-gray-100 text-gray-800';
     }
   };
 
@@ -323,19 +323,19 @@ export default function TradingPage() {
 
   const getTicketTypeIcon = (type: TicketType) => {
     return type === 0 ? (
-      <ArrowUpCircle className='h-4 w-4 text-emerald-400' />
+      <TrendingUp className='h-4 w-4 text-green-600' />
     ) : (
-      <ArrowDownCircle className='h-4 w-4 text-red-400' />
+      <TrendingDown className='h-4 w-4 text-red-600' />
     );
   };
 
   if (loading) {
     return (
       <DashboardLayout>
-        <div className='min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center'>
+        <div className='flex items-center justify-center h-64'>
           <div className='text-center'>
-            <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-cyan-400 mx-auto'></div>
-            <p className='mt-4 text-slate-300 text-lg'>
+            <div className='animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto'></div>
+            <p className='mt-2 text-muted-foreground'>
               {t('trading.loading')}{' '}
             </p>
           </div>
@@ -346,529 +346,496 @@ export default function TradingPage() {
 
   return (
     <DashboardLayout>
-      <div className='min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900'>
-        <div className='space-y-8 p-6'>
-          <div className='text-center space-y-4'>
-            <h1 className='text-5xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent'>
-              CryptoPro Exchange
-            </h1>
-            <p className='text-slate-300 text-lg max-w-2xl mx-auto leading-relaxed'>
-              Revolutionize your digital asset portfolio with our advanced trading platform. 
-              Experience lightning-fast transactions, military-grade security, and institutional-level tools 
-              designed for the next generation of crypto traders.
-            </p>
-          </div>
+      <div className='space-y-6'>
+        <div>
+          <h1 className='text-3xl font-bold tracking-tight'>
+            {t('trading.title')}
+          </h1>
+          <p className='text-muted-foreground'>{t('trading.subtitle')}</p>
+        </div>
 
-          <Tabs
-            value={activeTab}
-            onValueChange={setActiveTab}
-            className='space-y-8'
-          >
-            <TabsList className='grid w-full grid-cols-4 bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm'>
-              <TabsTrigger 
-                value='accounts' 
-                className='flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-purple-500 data-[state=active]:text-white'
-              >
-                <Banknote className='h-4 w-4' />
-                Portfolio Vaults
-              </TabsTrigger>
-              <TabsTrigger
-                value='create-account'
-                className='flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-purple-500 data-[state=active]:text-white'
-              >
-                <UserCheck className='h-4 w-4' />
-                Genesis Account
-              </TabsTrigger>
-              <TabsTrigger 
-                value='create' 
-                className='flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-purple-500 data-[state=active]:text-white'
-              >
-                <Plus className='h-4 w-4' />
-                Instant Transfer
-              </TabsTrigger>
-              <TabsTrigger 
-                value='history' 
-                className='flex items-center gap-2 data-[state=active]:bg-gradient-to-r data-[state=active]:from-cyan-500 data-[state=active]:to-purple-500 data-[state=active]:text-white'
-              >
-                <ScrollText className='h-4 w-4' />
-                Transaction Ledger
-              </TabsTrigger>
-            </TabsList>
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className='space-y-6'
+        >
+          <TabsList className='grid w-full grid-cols-4'>
+            <TabsTrigger value='accounts' className='flex items-center gap-2'>
+              <Wallet className='h-4 w-4' />
+              {t('trading.tabs.accounts')}
+            </TabsTrigger>
+            <TabsTrigger
+              value='create-account'
+              className='flex items-center gap-2'
+            >
+              <UserPlus className='h-4 w-4' />
+              {t('trading.tabs.createAccount')}
+            </TabsTrigger>
+            <TabsTrigger value='create' className='flex items-center gap-2'>
+              <Plus className='h-4 w-4' />
+              {t('trading.tabs.create')}
+            </TabsTrigger>
+            <TabsTrigger value='history' className='flex items-center gap-2'>
+              <History className='h-4 w-4' />
+              {t('trading.tabs.history')}
+            </TabsTrigger>
+          </TabsList>
 
-            <TabsContent value='accounts' className='space-y-6'>
-              <Card className='bg-slate-800/50 border-slate-700/50 backdrop-blur-sm'>
-                <CardHeader className='border-b border-slate-700/50'>
-                  <CardTitle className='text-2xl text-slate-100 flex items-center gap-2'>
-                    <Bitcoin className='h-6 w-6 text-amber-400' />
-                    Digital Asset Portfolios
-                  </CardTitle>
-                  <CardDescription className='text-slate-400'>
-                    Monitor your cryptocurrency holdings across multiple secure vaults with real-time 
-                    market valuations and advanced portfolio analytics.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className='pt-6'>
-                  <div className='space-y-6'>
-                    <div className='ms-auto mt-3'>
-                      <Label htmlFor='account-select' className='justify-end text-slate-300'>
-                        Select Trading Vault
-                      </Label>
-                      <Select
-                        value={selectedAccount}
-                        onValueChange={setSelectedAccount}
-                      >
-                        <SelectTrigger className='ms-auto mt-3 bg-slate-700/50 border-slate-600/50 text-slate-200'>
-                          <SelectValue placeholder='Choose your active portfolio vault' />
-                        </SelectTrigger>
-                        <SelectContent className='bg-slate-800 border-slate-700'>
-                          {tradingAccounts.map(account => (
-                            <SelectItem key={account.id} value={account.id} className='text-slate-200 focus:bg-slate-700'>
-                              {account.displayName} ({account.accountNumber})
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    {selectedAccount && (
-                      <div className='space-y-4'>
-                        <div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
-                          {wallets.map(wallet => (
-                            <Card key={wallet.id} className='p-6 bg-gradient-to-br from-slate-800/80 to-slate-900/80 border-slate-700/50 hover:border-cyan-500/30 transition-all duration-300'>
-                              <div className='flex items-center justify-between'>
-                                <div className='flex items-center space-x-3'>
-                                  <Coins className='h-6 w-6 text-amber-400' />
-                                  <div>
-                                    <p className='font-semibold text-slate-100 text-lg'>
-                                      {wallet.currency}
-                                    </p>
-                                    <p className='text-sm text-slate-400'>
-                                      Available: {wallet.availableBalance.toFixed(2)}
-                                    </p>
-                                  </div>
-                                </div>
-                                <div className='text-right'>
-                                  <p className='font-bold text-xl text-emerald-400'>
-                                    ${wallet.usdEquivalent.toFixed(2)}
+          <TabsContent value='accounts' className='space-y-6'>
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('trading.accounts.title')}</CardTitle>
+                <CardDescription>
+                  {t('trading.accounts.description')}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className='space-y-4'>
+                  <div className='ms-auto mt-3'>
+                    <Label htmlFor='account-select' className='justify-end'>
+                      {t('trading.accounts.selectLabel')}
+                    </Label>
+                    <Select
+                      value={selectedAccount}
+                      onValueChange={setSelectedAccount}
+                    >
+                      <SelectTrigger className='ms-auto mt-3'>
+                        <SelectValue placeholder='Select a trading account' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {tradingAccounts.map(account => (
+                          <SelectItem key={account.id} value={account.id}>
+                            {account.displayName} ({account.accountNumber})
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  {selectedAccount && (
+                    <div className='space-y-4'>
+                      <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
+                        {wallets.map(wallet => (
+                          <Card key={wallet.id} className='p-4'>
+                            <div className='flex items-center justify-between'>
+                              <div className='flex items-center space-x-2'>
+                                <DollarSign className='h-5 w-5 text-green-600' />
+                                <div>
+                                  <p className='font-medium'>
+                                    {wallet.currency}
                                   </p>
-                                  <p className='text-sm text-slate-400'>
-                                    Total: {wallet.totalBalance.toFixed(2)}
+                                  <p className='text-sm text-muted-foreground'>
+                                    {t('trading.accounts.available')}:{' '}
+                                    {wallet.availableBalance.toFixed(2)}
                                   </p>
                                 </div>
                               </div>
-                              {wallet.lockedBalance > 0 && (
-                                <div className='mt-3 text-sm text-amber-400 bg-amber-500/10 p-2 rounded border border-amber-500/20'>
-                                  Locked: {wallet.lockedBalance.toFixed(2)}
-                                </div>
-                              )}
-                            </Card>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value='create-account' className='space-y-6'>
-              <Card className='bg-slate-800/50 border-slate-700/50 backdrop-blur-sm'>
-                <CardHeader className='border-b border-slate-700/50'>
-                  <CardTitle className='text-2xl text-slate-100 flex items-center gap-2'>
-                    <UserCheck className='h-6 w-6 text-emerald-400' />
-                    Genesis Account Creation
-                  </CardTitle>
-                  <CardDescription className='text-slate-400'>
-                    Initialize a new secure trading vault with institutional-grade encryption 
-                    and multi-signature authentication for ultimate asset protection.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className='pt-6'>
-                  <div className='space-y-6'>
-                    <div>
-                      <Label htmlFor='account-name' className='mb-3 text-slate-300 font-medium'>
-                        Vault Identity Name
-                      </Label>
-                      <Input
-                        id='account-name'
-                        placeholder='Enter your secure vault identifier'
-                        value={newAccountName}
-                        onChange={e => setNewAccountName(e.target.value)}
-                        disabled={creatingAccount}
-                        className='bg-slate-700/50 border-slate-600/50 text-slate-200 placeholder:text-slate-500'
-                        onKeyDown={e => {
-                          if (e.key === 'Enter' && newAccountName.trim()) {
-                            handleCreateAccount();
-                          }
-                        }}
-                      />
-                      <p className='text-sm text-slate-400 mt-2'>
-                        Choose a unique name for easy identification across your crypto operations
-                      </p>
-                    </div>
-
-                    <Button
-                      onClick={handleCreateAccount}
-                      disabled={creatingAccount || !newAccountName.trim()}
-                      className='bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 text-white px-8 py-3'
-                    >
-                      {creatingAccount && (
-                        <Loader2 className='h-4 w-4 mr-2 animate-spin' />
-                      )}
-                      {creatingAccount
-                        ? 'Initializing Genesis Vault...'
-                        : 'Create Genesis Account'}
-                    </Button>
-
-                    {tradingAccounts.length > 0 && (
-                      <div className='mt-8'>
-                        <h4 className='text-lg font-semibold mb-4 text-slate-200'>
-                          Active Trading Vaults
-                        </h4>
-                        <div className='space-y-3'>
-                          {tradingAccounts.map(account => (
-                            <div
-                              key={account.id}
-                              className='flex items-center justify-between p-4 bg-slate-700/30 border border-slate-700/50 rounded-lg hover:border-purple-500/30 transition-all'
-                            >
-                              <div>
-                                <p className='font-semibold text-slate-100'>
-                                  {account.displayName}
+                              <div className='text-right'>
+                                <p className='font-bold'>
+                                  ${wallet.usdEquivalent.toFixed(2)}
                                 </p>
-                                <p className='text-sm text-slate-400'>
-                                  Vault ID: {account.accountNumber}
+                                <p className='text-sm text-muted-foreground'>
+                                  {t('trading.accounts.total')}{' '}
+                                  {wallet.totalBalance.toFixed(2)}
                                 </p>
                               </div>
-                              <Badge
-                                variant={
-                                  account.status === 'Active'
-                                    ? 'default'
-                                    : 'secondary'
-                                }
-                                className={account.status === 'Active' 
-                                  ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' 
-                                  : 'bg-slate-500/20 text-slate-400 border-slate-500/30'
-                                }
-                              >
-                                {account.status === 'Active'
-                                  ? 'ACTIVE'
-                                  : 'SUSPENDED'}
-                              </Badge>
                             </div>
-                          ))}
-                        </div>
+                            {wallet.lockedBalance > 0 && (
+                              <div className='mt-2 text-sm text-muted-foreground'>
+                                {t('trading.accounts.locked')}:{' '}
+                                {wallet.lockedBalance.toFixed(2)}
+                              </div>
+                            )}
+                          </Card>
+                        ))}
                       </div>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* New Create Account Tab */}
+          <TabsContent value='create-account' className='space-y-6'>
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('trading.createAccount.title')}</CardTitle>
+                <CardDescription>
+                  {t('trading.createAccount.description')}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className='space-y-4'>
+                  <div>
+                    <Label htmlFor='account-name' className='mb-2'>
+                      {t('trading.createAccount.nameLabel')}
+                    </Label>
+                    <Input
+                      id='account-name'
+                      placeholder={t('trading.createAccount.namePlaceholder')}
+                      value={newAccountName}
+                      onChange={e => setNewAccountName(e.target.value)}
+                      disabled={creatingAccount}
+                      onKeyDown={e => {
+                        if (e.key === 'Enter' && newAccountName.trim()) {
+                          handleCreateAccount();
+                        }
+                      }}
+                    />
+                    <p className='text-sm text-muted-foreground mt-1'>
+                      {t('trading.createAccount.nameHelp')}
+                    </p>
+                  </div>
+
+                  <Button
+                    onClick={handleCreateAccount}
+                    disabled={creatingAccount || !newAccountName.trim()}
+                  >
+                    {creatingAccount && (
+                      <Loader2 className='h-4 w-4 mr-2 animate-spin' />
                     )}
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
+                    {creatingAccount
+                      ? t('trading.createAccount.creating')
+                      : t('trading.createAccount.createButton')}
+                  </Button>
 
-            <TabsContent value='create' className='space-y-6'>
-              <Card className='bg-slate-800/50 border-slate-700/50 backdrop-blur-sm'>
-                <CardHeader className='border-b border-slate-700/50'>
-                  <CardTitle className='text-2xl text-slate-100 flex items-center gap-2'>
-                    <Plus className='h-6 w-6 text-purple-400' />
-                    Lightning Transfer Hub
-                  </CardTitle>
-                  <CardDescription className='text-slate-400'>
-                    Execute instant deposits and withdrawals with zero-confirmation technology. 
-                    Experience seamless crypto transfers with industry-leading speed and security.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className='pt-6'>
-                  <div className='space-y-6'>
-                    <div>
-                      <Label htmlFor='account-select' className='mb-3 text-slate-300 font-medium'>
-                        Source Trading Vault
-                      </Label>
-                      <Select
-                        value={selectedAccount}
-                        onValueChange={setSelectedAccount}
-                      >
-                        <SelectTrigger className='w-full bg-slate-700/50 border-slate-600/50 text-slate-200'>
-                          <SelectValue placeholder='Select your active vault' />
-                        </SelectTrigger>
-                        <SelectContent className='w-full bg-slate-800 border-slate-700'>
-                          {tradingAccounts.map(account => (
-                            <SelectItem key={account.id} value={account.id} className='text-slate-200 focus:bg-slate-700'>
-                              {account.displayName} ({account.accountNumber})
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor='wallet-select' className='mb-3 text-slate-300 font-medium'>
-                        Asset Wallet
-                      </Label>
-                      <Select
-                        value={selectedWallet}
-                        onValueChange={setSelectedWallet}
-                      >
-                        <SelectTrigger className='w-full bg-slate-700/50 border-slate-600/50 text-slate-200'>
-                          <SelectValue placeholder='Choose asset wallet' />
-                        </SelectTrigger>
-                        <SelectContent className='bg-slate-800 border-slate-700'>
-                          {wallets.map(wallet => (
-                            <SelectItem key={wallet.id} value={wallet.id} className='text-slate-200 focus:bg-slate-700'>
-                              {wallet.currency} - ${wallet.usdEquivalent.toFixed(2)}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor='ticket-type' className='mb-3 text-slate-300 font-medium'>
-                        Transfer Direction
-                      </Label>
-                      <Select
-                        value={ticketType.toString()}
-                        onValueChange={(value: string) =>
-                          setTicketType(Number.parseInt(value) as TicketType)
-                        }
-                      >
-                        <SelectTrigger className='w-full bg-slate-700/50 border-slate-600/50 text-slate-200'>
-                          <SelectValue placeholder='Select transfer type' />
-                        </SelectTrigger>
-                        <SelectContent className='bg-slate-800 border-slate-700'>
-                          <SelectItem value='0' className='text-slate-200 focus:bg-slate-700'>
-                            <div className='flex items-center gap-2'>
-                              <ArrowUpCircle className='h-4 w-4 text-emerald-400' />
-                              Instant Deposit
-                            </div>
-                          </SelectItem>
-                          <SelectItem value='1' className='text-slate-200 focus:bg-slate-700'>
-                            <div className='flex items-center gap-2'>
-                              <ArrowDownCircle className='h-4 w-4 text-red-400' />
-                              Secure Withdrawal
-                            </div>
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div>
-                      <Label htmlFor='amount' className='mb-3 text-slate-300 font-medium'>
-                        Transfer Amount
-                      </Label>
-                      <Input
-                        id='amount'
-                        type='number'
-                        placeholder='Enter amount for instant transfer'
-                        value={ticketAmount}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                          setTicketAmount(e.target.value)
-                        }
-                        min='0'
-                        step='0.01'
-                        className='bg-slate-700/50 border-slate-600/50 text-slate-200 placeholder:text-slate-500'
-                      />
-                    </div>
-                    <Button
-                      onClick={createTicket}
-                      disabled={
-                        creatingTicket || !selectedWallet || !ticketAmount
-                      }
-                      className='bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-8 py-3'
-                    >
-                      {creatingTicket
-                        ? 'Processing Lightning Transfer...'
-                        : 'Execute Instant Transfer'}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-
-            <TabsContent value='history' className='space-y-6'>
-              <Card className='bg-slate-800/50 border-slate-700/50 backdrop-blur-sm'>
-                <CardHeader className='border-b border-slate-700/50'>
-                  <CardTitle className='text-2xl text-slate-100 flex items-center gap-2'>
-                    <ScrollText className='h-6 w-6 text-cyan-400' />
-                    Blockchain Transaction Ledger
-                  </CardTitle>
-                  <CardDescription className='text-slate-400'>
-                    Comprehensive audit trail of all your digital asset movements with 
-                    immutable timestamp records and real-time status tracking.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className='pt-6'>
-                  <div className='space-y-6'>
-                    {/* Page Size Selector */}
-                    <div className='flex items-center justify-between'>
-                      <div className='flex items-center space-x-3'>
-                        <Label htmlFor='page-size' className='text-slate-300'>
-                          Display Records
-                        </Label>
-                        <Select
-                          value={pagination.pageSize.toString()}
-                          onValueChange={handlePageSizeChange}
-                        >
-                          <SelectTrigger className='w-20 bg-slate-700/50 border-slate-600/50 text-slate-200'>
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent className='bg-slate-800 border-slate-700'>
-                            <SelectItem value='5' className='text-slate-200'>5</SelectItem>
-                            <SelectItem value='10' className='text-slate-200'>10</SelectItem>
-                            <SelectItem value='20' className='text-slate-200'>20</SelectItem>
-                            <SelectItem value='50' className='text-slate-200'>50</SelectItem>
-                          </SelectContent>
-                        </Select>
-                        <span className='text-sm text-slate-400'>
-                          transactions per page
-                        </span>
-                      </div>
-                      {ticketsLoading && (
-                        <div className='flex items-center space-x-2'>
-                          <div className='animate-spin rounded-full h-4 w-4 border-b-2 border-cyan-400'></div>
-                          <span className='text-sm text-slate-300'>
-                            Syncing blockchain data...
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                    {tickets.length === 0 ? (
-                      <div className='text-center py-12'>
-                        <ScrollText className='h-16 w-16 text-slate-600 mx-auto mb-6' />
-                        <h3 className='text-xl font-semibold text-slate-300 mb-2'>No Transaction History</h3>
-                        <p className='text-slate-400 max-w-md mx-auto'>
-                          Your blockchain ledger is empty. Start trading to see your transaction history appear here with real-time updates.
-                        </p>
-                      </div>
-                    ) : (
-                      <div className='space-y-3'>
-                        {tickets.map(ticket => (
+                  {tradingAccounts.length > 0 && (
+                    <div className='mt-6'>
+                      <h4 className='text-sm font-medium mb-3'>
+                        {t('trading.createAccount.existingAccounts')}
+                      </h4>
+                      <div className='space-y-2'>
+                        {tradingAccounts.map(account => (
                           <div
-                            key={ticket.id}
-                            className='flex items-center justify-between p-6 bg-gradient-to-r from-slate-800/50 to-slate-700/30 border border-slate-700/50 rounded-lg hover:border-cyan-500/30 transition-all duration-300'
+                            key={account.id}
+                            className='flex items-center justify-between p-3 border rounded-lg'
                           >
-                            <div className='flex items-center space-x-4'>
-                              {getTicketTypeIcon(ticket.ticketType)}
-                              <div>
-                                <p className='font-semibold text-slate-100 text-lg'>
-                                  {getTicketTypeText(ticket.ticketType)} - {ticket.amount.toFixed(2)}
-                                </p>
-                                <p className='text-sm text-slate-400'>
-                                  Transaction Hash: {ticket.id}
-                                </p>
-                              </div>
+                            <div>
+                              <p className='font-medium'>
+                                {account.displayName}
+                              </p>
+                              <p className='text-sm text-muted-foreground'>
+                                {t('trading.createAccount.account')}{' '}
+                                {account.accountNumber}
+                              </p>
                             </div>
-                            <div className='flex items-center space-x-3'>
-                              <Badge
-                                className={`${getStatusColor(ticket.ticketStatus)} border`}
-                              >
-                                {getStatusIcon(ticket.ticketStatus)}
-                                <span className='ml-2 font-medium'>
-                                  {getStatusText(ticket.ticketStatus)}
-                                </span>
-                              </Badge>
-                            </div>
+                            <Badge
+                              variant={
+                                account.status === 'Active'
+                                  ? 'default'
+                                  : 'secondary'
+                              }
+                            >
+                              {account.status === 'Active'
+                                ? t('trading.accountStatus.active')
+                                : t('trading.accountStatus.suspended')}
+                            </Badge>
                           </div>
                         ))}
                       </div>
-                    )}
-                    {tickets.length > 0 && (
-                      <div className='flex items-center justify-between pt-6 border-t border-slate-700/50'>
-                        <div className='text-sm text-slate-400'>
-                          Showing{' '}
-                          {(pagination.currentPage - 1) * pagination.pageSize + 1}{' '}
-                          to{' '}
-                          {Math.min(
-                            pagination.currentPage * pagination.pageSize,
-                            pagination.totalItems
-                          )}{' '}
-                          of {pagination.totalItems}{' '}
-                          blockchain records
-                        </div>
-                        <div className='flex items-center space-x-2'>
-                          <Button
-                            variant='outline'
-                            size='sm'
-                            onClick={() => handlePageChange(1)}
-                            disabled={
-                              pagination.currentPage === 1 || ticketsLoading
-                            }
-                            className='bg-slate-700/50 border-slate-600/50 text-slate-300 hover:bg-slate-600/50'
-                          >
-                            <ChevronsLeft className='h-4 w-4' />
-                          </Button>
-                          <Button
-                            variant='outline'
-                            size='sm'
-                            onClick={() =>
-                              handlePageChange(pagination.currentPage - 1)
-                            }
-                            disabled={
-                              pagination.currentPage === 1 || ticketsLoading
-                            }
-                            className='bg-slate-700/50 border-slate-600/50 text-slate-300 hover:bg-slate-600/50'
-                          >
-                            <ChevronLeft className='h-4 w-4' />
-                          </Button>
-                          <div className='flex items-center space-x-1'>
-                            {Array.from(
-                              { length: Math.min(5, pagination.totalPages) },
-                              (_, i) => {
-                                const pageNumber = i + 1;
-                                return (
-                                  <Button
-                                    key={pageNumber}
-                                    variant={
-                                      pagination.currentPage === pageNumber
-                                        ? 'default'
-                                        : 'outline'
-                                    }
-                                    size='sm'
-                                    onClick={() => handlePageChange(pageNumber)}
-                                    disabled={ticketsLoading}
-                                    className={`w-10 h-10 ${
-                                      pagination.currentPage === pageNumber
-                                        ? 'bg-gradient-to-r from-cyan-500 to-purple-500 text-white border-none'
-                                        : 'bg-slate-700/50 border-slate-600/50 text-slate-300 hover:bg-slate-600/50'
-                                    }`}
-                                  >
-                                    {pageNumber}
-                                  </Button>
-                                );
-                              }
-                            )}
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value='create' className='space-y-6'>
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('trading.createTicket.title')}</CardTitle>
+                <CardDescription>
+                  {t('trading.createTicket.description')}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className='space-y-4'>
+                  <div>
+                    <Label htmlFor='account-select' className='mb-2'>
+                      {t('trading.createTicket.accountLabel')}
+                    </Label>
+                    <Select
+                      value={selectedAccount}
+                      onValueChange={setSelectedAccount}
+                    >
+                      <SelectTrigger className='w-full'>
+                        <SelectValue
+                          placeholder={t(
+                            'trading.createTicket.walletPlaceholder'
+                          )}
+                        />
+                      </SelectTrigger>
+                      <SelectContent className='w-full'>
+                        {tradingAccounts.map(account => (
+                          <SelectItem key={account.id} value={account.id}>
+                            {account.displayName} ({account.accountNumber})
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor='wallet-select' className='mb-2'>
+                      {t('trading.createTicket.walletLabel')}
+                    </Label>
+                    <Select
+                      value={selectedWallet}
+                      onValueChange={setSelectedWallet}
+                    >
+                      <SelectTrigger className='w-full'>
+                        <SelectValue placeholder='Select a wallet' />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {wallets.map(wallet => (
+                          <SelectItem key={wallet.id} value={wallet.id}>
+                            {wallet.currency} - $
+                            {wallet.usdEquivalent.toFixed(2)}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor='ticket-type' className='mb-2'>
+                      {t('trading.createTicket.typeLabel')}
+                    </Label>
+                    <Select
+                      value={ticketType.toString()}
+                      onValueChange={(value: string) =>
+                        setTicketType(Number.parseInt(value) as TicketType)
+                      }
+                    >
+                      <SelectTrigger className='w-full'>
+                        <SelectValue
+                          placeholder={t(
+                            'trading.createTicket.typePlaceholder'
+                          )}
+                        />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value='0'>
+                          <div className='flex items-center gap-2'>
+                            <TrendingUp className='h-4 w-4 text-green-600' />
+                            {t('trading.createTicket.deposit')}
                           </div>
-                          <Button
-                            variant='outline'
-                            size='sm'
-                            onClick={() =>
-                              handlePageChange(pagination.currentPage + 1)
-                            }
-                            disabled={
-                              pagination.currentPage === pagination.totalPages ||
-                              ticketsLoading
-                            }
-                            className='bg-slate-700/50 border-slate-600/50 text-slate-300 hover:bg-slate-600/50'
-                          >
-                            <ChevronRight className='h-4 w-4' />
-                          </Button>
-                          <Button
-                            variant='outline'
-                            size='sm'
-                            onClick={() =>
-                              handlePageChange(pagination.totalPages)
-                            }
-                            disabled={
-                              pagination.currentPage === pagination.totalPages ||
-                              ticketsLoading
-                            }
-                            className='bg-slate-700/50 border-slate-600/50 text-slate-300 hover:bg-slate-600/50'
-                          >
-                            <ChevronsRight className='h-4 w-4' />
-                          </Button>
-                        </div>
+                        </SelectItem>
+                        <SelectItem value='1'>
+                          <div className='flex items-center gap-2'>
+                            <TrendingDown className='h-4 w-4 text-red-600' />
+                            {t('trading.createTicket.withdrawal')}
+                          </div>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Label htmlFor='amount' className='mb-2'>
+                      Amount
+                    </Label>
+                    <Input
+                      id='amount'
+                      type='number'
+                      placeholder={t('trading.createTicket.amountPlaceholder')}
+                      value={ticketAmount}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                        setTicketAmount(e.target.value)
+                      }
+                      min='0'
+                      step='0.01'
+                    />
+                  </div>
+                  <Button
+                    onClick={createTicket}
+                    disabled={
+                      creatingTicket || !selectedWallet || !ticketAmount
+                    }
+                  >
+                    {creatingTicket
+                      ? t('trading.createTicket.creating')
+                      : t('trading.createTicket.createButton')}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value='history' className='space-y-6'>
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('trading.history.title')}</CardTitle>
+                <CardDescription>
+                  {t('trading.history.description')}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className='space-y-4'>
+                  {/* Page Size Selector */}
+                  <div className='flex items-center justify-between'>
+                    <div className='flex items-center space-x-2'>
+                      <Label htmlFor='page-size'>
+                        {t('trading.history.showLabel')}
+                      </Label>
+                      <Select
+                        value={pagination.pageSize.toString()}
+                        onValueChange={handlePageSizeChange}
+                      >
+                        <SelectTrigger className='w-20'>
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value='5'>5</SelectItem>
+                          <SelectItem value='10'>10</SelectItem>
+                          <SelectItem value='20'>20</SelectItem>
+                          <SelectItem value='50'>50</SelectItem>
+                        </SelectContent>
+                      </Select>
+                      <span className='text-sm text-muted-foreground'>
+                        {t('trading.history.entries')}
+                      </span>
+                    </div>
+                    {ticketsLoading && (
+                      <div className='flex items-center space-x-2'>
+                        <div className='animate-spin rounded-full h-4 w-4 border-b-2 border-primary'></div>
+                        <span className='text-sm text-muted-foreground'>
+                          {t('trading.history.loading')}
+                        </span>
                       </div>
                     )}
                   </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </div>
+                  {tickets.length === 0 ? (
+                    <div className='text-center py-8'>
+                      <History className='h-12 w-12 text-muted-foreground mx-auto mb-4' />
+                      <p className='text-muted-foreground'>
+                        {t('trading.history.noTickets')}
+                      </p>
+                    </div>
+                  ) : (
+                    <div className='space-y-2'>
+                      {tickets.map(ticket => (
+                        <div
+                          key={ticket.id}
+                          className='flex items-center justify-between p-4 border rounded-lg'
+                        >
+                          <div className='flex items-center space-x-4'>
+                            {getTicketTypeIcon(ticket.ticketType)}
+                            <div>
+                              <p className='font-medium'>
+                                {getTicketTypeText(ticket.ticketType)} -{' '}
+                                {ticket.amount.toFixed(2)}
+                              </p>
+                              <p className='text-sm text-muted-foreground'>
+                                {t('trading.history.ticketId')} {ticket.id}
+                              </p>
+                            </div>
+                          </div>
+                          <div className='flex items-center space-x-2'>
+                            <Badge
+                              className={getStatusColor(ticket.ticketStatus)}
+                            >
+                              {getStatusIcon(ticket.ticketStatus)}
+                              <span className='ml-1'>
+                                {getStatusText(ticket.ticketStatus)}
+                              </span>
+                            </Badge>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  {tickets.length > 0 && (
+                    <div className='flex items-center justify-between pt-4'>
+                      <div className='text-sm text-muted-foreground'>
+                        {t('trading.history.showing')}{' '}
+                        {(pagination.currentPage - 1) * pagination.pageSize + 1}{' '}
+                        {t('trading.history.to')}{' '}
+                        {Math.min(
+                          pagination.currentPage * pagination.pageSize,
+                          pagination.totalItems
+                        )}{' '}
+                        {t('trading.history.of')} {pagination.totalItems}{' '}
+                        {t('trading.history.entriesText')}
+                      </div>
+                      <div className='flex items-center space-x-2'>
+                        <Button
+                          variant='outline'
+                          size='sm'
+                          onClick={() => handlePageChange(1)}
+                          disabled={
+                            pagination.currentPage === 1 || ticketsLoading
+                          }
+                        >
+                          <ChevronsLeft className='h-4 w-4' />
+                        </Button>
+                        <Button
+                          variant='outline'
+                          size='sm'
+                          onClick={() =>
+                            handlePageChange(pagination.currentPage - 1)
+                          }
+                          disabled={
+                            pagination.currentPage === 1 || ticketsLoading
+                          }
+                        >
+                          <ChevronLeft className='h-4 w-4' />
+                        </Button>
+                        <div className='flex items-center space-x-1'>
+                          {Array.from(
+                            { length: Math.min(5, pagination.totalPages) },
+                            (_, i) => {
+                              const pageNumber = i + 1;
+                              return (
+                                <Button
+                                  key={pageNumber}
+                                  variant={
+                                    pagination.currentPage === pageNumber
+                                      ? 'default'
+                                      : 'outline'
+                                  }
+                                  size='sm'
+                                  onClick={() => handlePageChange(pageNumber)}
+                                  disabled={ticketsLoading}
+                                  className='w-8 h-8'
+                                >
+                                  {pageNumber}
+                                </Button>
+                              );
+                            }
+                          )}
+                        </div>
+                        <Button
+                          variant='outline'
+                          size='sm'
+                          onClick={() =>
+                            handlePageChange(pagination.currentPage + 1)
+                          }
+                          disabled={
+                            pagination.currentPage === pagination.totalPages ||
+                            ticketsLoading
+                          }
+                        >
+                          <ChevronRight className='h-4 w-4' />
+                        </Button>
+                        <Button
+                          variant='outline'
+                          size='sm'
+                          onClick={() =>
+                            handlePageChange(pagination.totalPages)
+                          }
+                          disabled={
+                            pagination.currentPage === pagination.totalPages ||
+                            ticketsLoading
+                          }
+                        >
+                          <ChevronsRight className='h-4 w-4' />
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
       </div>
     </DashboardLayout>
   );

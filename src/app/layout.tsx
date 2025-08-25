@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner"
 import { NextIntlClientProvider } from "next-intl"
 import { getMessages } from "next-intl/server"
 import "./globals.css"
+import { UserProvider } from "./[locale]/dashboard/context/user-context"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,7 +39,9 @@ export default async function RootLayout({ children, params }: Props) {
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <UserProvider>
             {children}
+            </UserProvider>
             <Toaster />
           </ThemeProvider>
         </NextIntlClientProvider>
